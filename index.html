@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clima</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .weather-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        .temp {
+            font-size: 2.5em;
+            color: #ff5722;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" id="cityInput" placeholder="Introduce el nombre de la ciudad" />
+    <button id="getWeather">Obtener Clima</button>
+
+    <div class="weather-card" id="weatherCard" style="display: none;">
+        <h1 id="cityName"></h1>
+        <img id="weatherIcon" src="" alt="Icono del clima">
+        <p class="temp" id="temperature"></p>
+        <p id="description"></p>
+        <p id="humidity"></p>
+        <p id="windSpeed"></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.getElementById('getWeather').addEventListener('click', function() {
+            const city = document.getElementById('cityInput').value;
+
+            // Tu API Key de OpenWeather
+            const apiKey = 'a4ff3383e745465693d6babd7455aa73';
+
+            // URL de la API de OpenWeather con los parámetros de ciudad y API Key
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=es`;
+
+            // Realizar la solicitud a la API
+            axios.get(url)
+                .then(response => {
+                    const data = response.data;
+
+                    // Mostrar los datos en el HTML
+                    document.getElementById('cityName').innerText = `Clima en ${data.name}`;
+                    document.getElementById('temperature').innerText = `${data.main.temp}°C`;
+                    document.getElementById('description').innerText = data.weather[0].description;
+                    document.getElementById('humidity').innerText = `Humedad: ${data.main.humidity}%`;
+                    document.getElementById('windSpeed').innerText = `Velocidad del Viento: ${data.wind.speed} m/s`;
+                    document.getElementById('weatherIcon').src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+                    document.getElementById('weatherCard').style.display = 'block'; // Mostrar la tarjeta
+                })
+                .catch(error => {
+                    console.log('Ciudad no encontrada o error en la solicitud.');
+                    document.getElementById('weatherCard').style.display = 'none'; // Ocultar la tarjeta en caso de error
+                });
+        });
+    </script>
+</body>
+</html>

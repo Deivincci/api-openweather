@@ -1,0 +1,13 @@
+Necesitamos REST CLIENT y POSTMAN instalados
+
+donde conseguir api key
+
+https://home.openweathermap.org/api_keys
+
+
+para comenzar en consola :
+
+npm init -y
+
+npm install axios prompt-sync
+

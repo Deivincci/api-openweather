@@ -1,0 +1,1 @@
+GET https://api.openweathermap.org/data/2.5/weather?q=Barcelona&appid=a4ff3383e745465693d6babd7455aa73&units=metric&lang=es
