@@ -31,3 +31,11 @@ Código CSS y JS: El archivo index.html incluye tanto el código CSS como el có
 Nota de Seguridad
 Por razones de seguridad, no incluyo la API key directamente en el repositorio. Para utilizar la API, asegúrate de reemplazar OPENWEATHER_API_KEY=tu-api-key-aqui en el archivo .env del backend con tu propia clave API de OpenWeather.
 El archivo .env es el archivo que almacena nuestras credenciales,en este caso para facilitar aprendizaje,no se incluye,teneis que añadir vuestra api key al archivo html o al archivo app.js
+
+### Ejemplos
+
+#### 1. **Backend en Node.js**
+![Clima Node](https://github.com/Deivincci/api-openweather/blob/main/clima_node.png?raw=true)
+
+#### 2. **Frontend con HTML, CSS y JS**
+![Clima HTML](https://github.com/Deivincci/api-openweather/blob/main/clima_html.png?raw=true)
