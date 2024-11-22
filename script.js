@@ -8,7 +8,7 @@ document.getElementById('weatherIcon').src = `https://openweathermap.org/img/wn/
 const city = prompt('Introduce el nombre de la ciudad: ');
 
 // Tu API Key de OpenWeather
-const apiKey = 'a4ff3383e745465693d6babd7455aa73';
+const apiKey = 'OPENWEATHER_API_KEY=tu-api-key-aqui';
 
 // URL de la API de OpenWeather con los parámetros de ciudad y API Key
 const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=es`;
