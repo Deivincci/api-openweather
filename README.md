@@ -1,41 +1,74 @@
-API OpenWeather
-Este proyecto permite obtener información del clima utilizando la API de OpenWeather. El proyecto está dividido en dos partes:
+# API OpenWeather
 
-Backend con Node.js: Implementa un servidor en Node.js que realiza peticiones a la API de OpenWeather.
-Frontend con HTML, CSS y JavaScript: Proporciona una interfaz sencilla que hace las peticiones directamente desde el navegador usando JavaScript.
-Instrucciones
-Requisitos
-Tener instalada la última versión de Node.js (si usas el backend).
-Tener acceso a Internet para realizar las peticiones a la API de OpenWeather.
-Backend (Node.js)
-Clona este repositorio en tu máquina local.
-Navega a la carpeta del proyecto y ejecuta el siguiente comando para instalar las dependencias:
+> **Proyecto de aprendizaje (2023).** Primer contacto con APIs externas y manejo de credenciales. Parte de mi recorrido autodidacta: aprender haciendo cosas pequeñas que funcionan.
 
+Consulta del clima en tiempo real usando la API de OpenWeather, implementada de **dos formas distintas** para entender el contraste entre arquitecturas client-side y server-side.
+
+![Clima desde Node.js](clima_node.png)
+
+![Clima desde HTML/JS](clima_html.png)
+
+## Doble enfoque
+
+El mismo objetivo (mostrar el clima de una ciudad) resuelto con dos arquitecturas diferentes:
+
+| Enfoque | Pros | Contras |
+|---------|------|---------|
+| **Backend Node.js** (`app.js`) | API key oculta en `.env` del servidor | Requiere infraestructura (servidor corriendo) |
+| **Frontend puro** (`index.html` + `script.js`) | Cero dependencias de servidor | API key expuesta en el navegador |
+
+Implementar ambas versiones fue intencional: querer ver con mis propios ojos por qué las claves de servicios de pago (como Stripe) o las que tienen cuotas asociadas no deberían vivir en el cliente.
+
+## Stack
+
+- **Backend:** Node.js + Express
+- **Frontend:** HTML + CSS + JavaScript vanilla
+- **API externa:** [OpenWeather](https://openweathermap.org/api)
+- **Testing:** archivo `request.http` para probar endpoints manualmente
+
+## Cómo ejecutar
+
+Necesitas una API key gratuita de OpenWeather: https://openweathermap.org/api
+
+### Opción 1 — Backend Node.js
+
+```bash
+git clone https://github.com/Deivincci/api-openweather.git
+cd api-openweather
 npm install
-Crea un archivo .env en la raíz del proyecto y agrega tu API key de OpenWeather:
-env
+```
 
-OPENWEATHER_API_KEY=tu-api-key-aqui
-Inicia el servidor ejecutando el siguiente comando:
+Crea un archivo `.env` en la raíz:
 
+```
+OPENWEATHER_API_KEY=tu_clave_aqui
+```
+
+Arranca el servidor:
+
+```bash
 node app.js
-La API estará disponible en http://localhost:3000. Puedes probarla enviando solicitudes a las rutas definidas en el código.
-Frontend (HTML, CSS, JavaScript)
-Abre el archivo index.html en tu navegador. Este archivo contiene todo el código necesario (HTML, CSS y JS).
-El frontend realizará peticiones directamente a la API de OpenWeather desde el navegador, mostrando la información del clima en la página.
-Avisos
-Carpeta node_modules: No se sube la carpeta node_modules al repositorio debido a que contiene dependencias y GitHub tiene un límite en la cantidad de archivos que se pueden subir. Para instalar las dependencias, simplemente ejecuta npm install en tu entorno local.
+```
 
-Código CSS y JS: El archivo index.html incluye tanto el código CSS como el código JavaScript, por lo que no es necesario tener archivos separados para el diseño y la lógica.
+Disponible en `http://localhost:3000`.
 
-Nota de Seguridad
-Por razones de seguridad, no incluyo la API key directamente en el repositorio. Para utilizar la API, asegúrate de reemplazar OPENWEATHER_API_KEY=tu-api-key-aqui en el archivo .env del backend con tu propia clave API de OpenWeather.
-El archivo .env es el archivo que almacena nuestras credenciales,en este caso para facilitar aprendizaje,no se incluye,teneis que añadir vuestra api key al archivo html o al archivo app.js
+### Opción 2 — Frontend puro
 
-### Ejemplos
+Abre `index.html` directamente en el navegador. Edita el archivo y sustituye el placeholder de la API key por la tuya antes de usarlo.
 
-#### 1. **Backend en Node.js**
-![Clima Node](https://github.com/Deivincci/api-openweather/blob/main/clima_node.png?raw=true)
+> ⚠️ Esta opción expone la API key en el código del cliente. Útil solo para pruebas locales — no para producción.
 
-#### 2. **Frontend con HTML, CSS y JS**
-![Clima HTML](https://github.com/Deivincci/api-openweather/blob/main/clima_html.png?raw=true)
+## Notas de seguridad
+
+- El archivo `.env` no se incluye en el repo (no se versionan credenciales).
+- En la versión frontend, la clave está en el código por simplicidad didáctica. Para uso real lo correcto es proxiar todas las llamadas a través del backend.
+
+## Contexto
+
+Este repo forma parte de mi camino aprendiendo desarrollo: empecé con integraciones básicas como esta y fui sumando complejidad con el tiempo. Lo conservo archivado como referencia histórica del recorrido.
+
+Trabajo más reciente en mi [perfil de GitHub](https://github.com/Deivincci).
+
+## Licencia
+
+[Apache License 2.0](LICENSE) — Copyright 2023 David Moral Peláez
